@@ -1,0 +1,205 @@
+--// Services
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local HttpService = game:GetService("HttpService")
+
+-- KeyAuth Integration
+local KeyAuth = {}
+KeyAuth.api_url = "https://keyauth.win/api/1.0/"
+
+-- Initialize KeyAuth
+function KeyAuth.init(app_name, app_ownerid, app_secret, app_version)
+    KeyAuth.app_name = app_name
+    KeyAuth.app_ownerid = app_ownerid
+    KeyAuth.app_secret = app_secret
+    KeyAuth.app_version = app_version
+end
+
+-- Authenticate the key
+function KeyAuth.authenticate(key)
+    local response = HttpService:PostAsync(KeyAuth.api_url .. "license", HttpService:JSONEncode({
+        key = key,
+        app_name = KeyAuth.app_name,
+        app_ownerid = KeyAuth.app_ownerid,
+        app_secret = KeyAuth.app_secret,
+        app_version = KeyAuth.app_version
+    }), Enum.HttpContentType.ApplicationJson)
+
+    local result = HttpService:JSONDecode(response)
+    return result.success, result.message
+end
+
+-- Initialize KeyAuth
+KeyAuth.init("T70499887's Application", "cOotDp5wB1", "YourAppSecret", "1.0")
+
+-- GUI for key input
+local function createKeyInputUI()
+    local screenGui = Instance.new("ScreenGui", Players.LocalPlayer.PlayerGui)
+    screenGui.Name = "KeyAuthUI"
+
+    local frame = Instance.new("Frame", screenGui)
+    frame.Size = UDim2.new(0, 400, 0, 200)
+    frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+    frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+    frame.BorderSizePixel = 0
+
+    local title = Instance.new("TextLabel", frame)
+    title.Size = UDim2.new(1, 0, 0.3, 0)
+    title.Text = "Enter Your License Key"
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.BackgroundTransparency = 1
+    title.TextScaled = true
+
+    local textBox = Instance.new("TextBox", frame)
+    textBox.Size = UDim2.new(0.8, 0, 0.4, 0)
+    textBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+    textBox.Text = ""
+    textBox.TextScaled = true
+    textBox.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    textBox.TextColor3 = Color3.new(1, 1, 1)
+
+    local submitButton = Instance.new("TextButton", frame)
+    submitButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+    submitButton.Position = UDim2.new(0.1, 0, 0.8, 0)
+    submitButton.Text = "Submit"
+    submitButton.TextScaled = true
+    submitButton.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
+    submitButton.TextColor3 = Color3.new(1, 1, 1)
+
+    return screenGui, textBox, submitButton
+end
+
+-- Handle key input
+local function handleKeyInput(scriptKey)
+    local success, message = KeyAuth.authenticate(scriptKey)
+
+    if success then
+        print("Authentication succe--// Services
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local HttpService = game:GetService("HttpService")
+
+-- KeyAuth Integration
+local KeyAuth = {}
+KeyAuth.api_url = "https://keyauth.win/api/1.0/"
+
+-- Initialize KeyAuth
+function KeyAuth.init(app_name, app_ownerid, app_secret, app_version)
+    KeyAuth.app_name = app_name
+    KeyAuth.app_ownerid = app_ownerid
+    KeyAuth.app_secret = app_secret
+    KeyAuth.app_version = app_version
+end
+
+-- Authenticate the key
+function KeyAuth.authenticate(key)
+    local response = HttpService:PostAsync(KeyAuth.api_url .. "license", HttpService:JSONEncode({
+        key = key,
+        app_name = KeyAuth.app_name,
+        app_ownerid = KeyAuth.app_ownerid,
+        app_secret = KeyAuth.app_secret,
+        app_version = KeyAuth.app_version
+    }), Enum.HttpContentType.ApplicationJson)
+
+    local result = HttpService:JSONDecode(response)
+    return result.success, result.message
+end
+
+-- Initialize KeyAuth
+KeyAuth.init("T70499887's Application", "cOotDp5wB1", "YourAppSecret", "1.0")
+
+-- GUI for key input
+local function createKeyInputUI()
+    local screenGui = Instance.new("ScreenGui", Players.LocalPlayer.PlayerGui)
+    screenGui.Name = "KeyAuthUI"
+
+    local frame = Instance.new("Frame", screenGui)
+    frame.Size = UDim2.new(0, 400, 0, 200)
+    frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+    frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+    frame.BorderSizePixel = 0
+
+    local title = Instance.new("TextLabel", frame)
+    title.Size = UDim2.new(1, 0, 0.3, 0)
+    title.Text = "Enter Your License Key"
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.BackgroundTransparency = 1
+    title.TextScaled = true
+
+    local textBox = Instance.new("TextBox", frame)
+    textBox.Size = UDim2.new(0.8, 0, 0.4, 0)
+    textBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+    textBox.Text = ""
+    textBox.TextScaled = true
+    textBox.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    textBox.TextColor3 = Color3.new(1, 1, 1)
+
+    local submitButton = Instance.new("TextButton", frame)
+    submitButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+    submitButton.Position = UDim2.new(0.1, 0, 0.8, 0)
+    submitButton.Text = "Submit"
+    submitButton.TextScaled = true
+    submitButton.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
+    submitButton.TextColor3 = Color3.new(1, 1, 1)
+
+    return screenGui, textBox, submitButton
+end
+
+-- Handle key input
+local function handleKeyInput(scriptKey)
+    local success, message = KeyAuth.authenticate(scriptKey)
+
+    if success then
+        print("Authentication successful!")
+        StarterGui:SetCore("SendNotification", {
+            Title = "Success",
+            Text = "Authentication successful!",
+            Duration = 5
+        })
+    else
+        error("Authentication failed: " .. message)
+    end
+end
+
+-- Main Script
+local function main()
+    if _G.script_key then
+        handleKeyInput(_G.script_key)
+    else
+        local gui, textBox, submitButton = createKeyInputUI()
+
+        submitButton.MouseButton1Click:Connect(function()
+            local key = textBox.Text
+            handleKeyInput(key)
+            gui:Destroy()
+        end)
+    end
+end
+
+main()ssful!")
+        StarterGui:SetCore("SendNotification", {
+            Title = "Success",
+            Text = "Authentication successful!",
+            Duration = 5
+        })
+    else
+        error("Authentication failed: " .. message)
+    end
+end
+
+-- Main Script
+local function main()
+    if _G.script_key then
+        handleKeyInput(_G.script_key)
+    else
+        local gui, textBox, submitButton = createKeyInputUI()
+
+        submitButton.MouseButton1Click:Connect(function()
+            local key = textBox.Text
+            handleKeyInput(key)
+            gui:Destroy()
+        end)
+    end
+end
+
+main()
